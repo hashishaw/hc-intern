@@ -1,5 +1,7 @@
 @use 'tokens';
-@import '@hashicorp/design-system-components';
+// @import '@hashicorp/design-system-components';
+
+// TODO: add dark mode?
 
 // Reset
 body {
@@ -15,6 +17,10 @@ input {
   &:focus {
     box-shadow: var(--token-focus-ring-box-shadow);
   }
+}
+code {
+  font-family: var(--token-typography-font-stack-code);
+  background-color: var(--token-color-surface-interactive-active);
 }
 .title {
   font-family: var(--token-typography-font-stack-display);
@@ -40,4 +46,17 @@ input {
   width: 5em;
   height: 5em;
   margin: 50px auto 20px;
+}
+
+// Interview panel
+.panel-outer {
+  display: grid;
+  height: 100vh;
+  overflow: scroll;
+  grid-template-columns: 1fr 1em 1fr;
+}
+.instructions {
+  margin: 1em;
+  box-shadow: var(--token-elevation-inset-box-shadow);
+  background-color: var(--token-color-surface-primary);
 }
