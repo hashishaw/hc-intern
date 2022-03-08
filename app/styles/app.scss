@@ -1,0 +1,43 @@
+@use 'tokens';
+@import '@hashicorp/design-system-components';
+
+// Reset
+body {
+  color: var(--token-color-foreground-primary);
+  background-color: var(--token-color-palette-neutral-100);
+  font-family: var(--token-typography-font-stack-text);
+}
+
+// Generic
+input {
+  padding: 1em;
+  margin-bottom: 1em;
+  &:focus {
+    box-shadow: var(--token-focus-ring-box-shadow);
+  }
+}
+.title {
+  font-family: var(--token-typography-font-stack-display);
+}
+.box {
+  display: block;
+  background: var(--token-color-foreground-high-contrast);
+  box-shadow: var(--token-elevation-mid-box-shadow);
+  padding: 2em;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+// Welcome page
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2em;
+}
+.logo {
+  width: 5em;
+  height: 5em;
+  margin: 50px auto 20px;
+}
