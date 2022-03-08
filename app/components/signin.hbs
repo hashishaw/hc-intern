@@ -1,0 +1,6 @@
+<div class='box'>
+  <p>{{@title}}</p>
+  <label for='entry-code'>Entry Code</label>
+  <Input id='entry-code' @type='text' @value={{this.code}} />
+  <Hds::Button @text='Go' {{on 'click' this.handleSubmit}} />
+</div>
