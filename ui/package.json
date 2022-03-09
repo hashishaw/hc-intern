@@ -19,6 +19,7 @@
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
+    "serve": "ember serve --proxy=http://localhost:8080",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test"
   },
