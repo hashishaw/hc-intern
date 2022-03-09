@@ -1,12 +1,24 @@
 @use 'tokens';
 // @import '@hashicorp/design-system-components';
 
-// TODO: add dark mode?
+:root {
+  --bg-color: var(--token-color-palette-neutral-100);
+  --foreground-bg: var(--token-color-palette-neutral-0);
+  --font-color: var(--token-color-foreground-primary);
+  --code-bg: var(--token-color-surface-interactive-active);
+}
 
+[data-theme='dark'] {
+  --bg-color: var(--token-color-palette-neutral-600);
+  --foreground-bg: var(--token-color-palette-neutral-700);
+  --font-color: var(--token-color-palette-neutral-0);
+  --code-bg: var(--token-color-palette-neutral-500);
+}
 // Reset
-body {
-  color: var(--token-color-foreground-primary);
-  background-color: var(--token-color-palette-neutral-100);
+* {
+  margin: 0;
+  color: var(--font-color);
+  background-color: var(--bg-color);
   font-family: var(--token-typography-font-stack-text);
 }
 
@@ -20,14 +32,14 @@ input {
 }
 code {
   font-family: var(--token-typography-font-stack-code);
-  background-color: var(--token-color-surface-interactive-active);
+  background-color: var(--code-bg);
 }
 .title {
   font-family: var(--token-typography-font-stack-display);
 }
 .box {
   display: block;
-  background: var(--token-color-foreground-high-contrast);
+  background: var(--bg-color);
   box-shadow: var(--token-elevation-mid-box-shadow);
   padding: 2em;
   margin: 0 auto;
@@ -53,10 +65,16 @@ code {
   display: grid;
   height: 100vh;
   overflow: scroll;
-  grid-template-columns: 1fr 1em 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 .instructions {
-  margin: 1em;
+  margin: 2em;
+  padding: 2em;
   box-shadow: var(--token-elevation-inset-box-shadow);
-  background-color: var(--token-color-surface-primary);
+  background-color: var(--bg-color);
+}
+.code {
+  margin: 2em;
+  padding: 2em;
+  background-color: var(--code-bg);
 }

@@ -21,7 +21,14 @@
       making it just like that variable was never set.</p>
 
   </div>
-  <div class='code'>
-    {{!-- <CodeMirror @content='This is example' @onUpdate={{this.update}} /> --}}
-  </div>
+  <div
+    class='code'
+    {{code-mirror
+      content=this.document
+      onUpdate=this.update
+      mode='js'
+      path='something.js'
+    }}
+    {{! Set(name string, value int) {}\n    Get(name string)-> int {}\n    Unset(name string) {}\n\n    // if time permits :)\n    Begin() {}\n    Rollback() {}\n    Commit() {}\n }}
+  ></div>
 </main>
