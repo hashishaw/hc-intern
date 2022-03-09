@@ -11,28 +11,46 @@ import (
 	"github.com/go-openapi/runtime"
 )
 
-// GetAPIInterviewIDNoContentCode is the HTTP code returned for type GetAPIInterviewIDNoContent
-const GetAPIInterviewIDNoContentCode int = 204
+// GetAPIInterviewIDOKCode is the HTTP code returned for type GetAPIInterviewIDOK
+const GetAPIInterviewIDOKCode int = 200
 
-/*GetAPIInterviewIDNoContent Returns interview found.
+/*GetAPIInterviewIDOK Returns interview found.
 
-swagger:response getApiInterviewIdNoContent
+swagger:response getApiInterviewIdOK
 */
-type GetAPIInterviewIDNoContent struct {
+type GetAPIInterviewIDOK struct {
+
+	/*
+	  In: Body
+	*/
+	Payload string `json:"body,omitempty"`
 }
 
-// NewGetAPIInterviewIDNoContent creates GetAPIInterviewIDNoContent with default headers values
-func NewGetAPIInterviewIDNoContent() *GetAPIInterviewIDNoContent {
+// NewGetAPIInterviewIDOK creates GetAPIInterviewIDOK with default headers values
+func NewGetAPIInterviewIDOK() *GetAPIInterviewIDOK {
 
-	return &GetAPIInterviewIDNoContent{}
+	return &GetAPIInterviewIDOK{}
+}
+
+// WithPayload adds the payload to the get Api interview Id o k response
+func (o *GetAPIInterviewIDOK) WithPayload(payload string) *GetAPIInterviewIDOK {
+	o.Payload = payload
+	return o
+}
+
+// SetPayload sets the payload to the get Api interview Id o k response
+func (o *GetAPIInterviewIDOK) SetPayload(payload string) {
+	o.Payload = payload
 }
 
 // WriteResponse to the client
-func (o *GetAPIInterviewIDNoContent) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+func (o *GetAPIInterviewIDOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
 
-	rw.Header().Del(runtime.HeaderContentType) //Remove Content-Type on empty responses
-
-	rw.WriteHeader(204)
+	rw.WriteHeader(200)
+	payload := o.Payload
+	if err := producer.Produce(rw, payload); err != nil {
+		panic(err) // let the recovery middleware deal with this
+	}
 }
 
 // GetAPIInterviewIDNotFoundCode is the HTTP code returned for type GetAPIInterviewIDNotFound

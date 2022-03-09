@@ -34,8 +34,10 @@ paths:
           required: true
           description: The interview session id.
       responses:
-        204:
+        200:
           description: Returns interview found.
+          schema:
+            type: string
         404:
           description: Returns interview not found.
 

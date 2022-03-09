@@ -48,7 +48,7 @@ func Health(operations.CheckHealthParams) middleware.Responder {
 
 func GetInterview(interview operations.GetAPIInterviewIDParams) middleware.Responder {
   if interview.ID == "foobar" {
-    return operations.NewGetAPIInterviewIDNoContent()
+    return operations.NewGetAPIInterviewIDOK().WithPayload("Interview found")
   }
   return operations.NewGetAPIInterviewIDNotFound()
 }

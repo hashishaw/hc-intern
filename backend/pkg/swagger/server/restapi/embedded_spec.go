@@ -47,8 +47,11 @@ func init() {
           }
         ],
         "responses": {
-          "204": {
-            "description": "Returns interview found."
+          "200": {
+            "description": "Returns interview found.",
+            "schema": {
+              "type": "string"
+            }
           },
           "404": {
             "description": "Returns interview not found."
@@ -132,8 +135,11 @@ func init() {
           }
         ],
         "responses": {
-          "204": {
-            "description": "Returns interview found."
+          "200": {
+            "description": "Returns interview found.",
+            "schema": {
+              "type": "string"
+            }
           },
           "404": {
             "description": "Returns interview not found."
