@@ -1,0 +1,26 @@
+<nav class='navbar'>
+  <div class='left'>
+    <FlightIcon @name='hashicorp' @size={{24}} />
+    <div class='welcome-message'>{{yield}}</div>
+  </div>
+  <div class='right'>
+    <button class='toggle' {{on 'click' this.toggleTheme}}>
+      <FlightIcon
+        @name='sun'
+        @color={{if
+          this.theme.isDark
+          'var(--inactive-icon)'
+          'var(--active-icon'
+        }}
+      />
+      <FlightIcon
+        @name='moon'
+        @color={{if
+          this.theme.isDark
+          'var(--active-icon)'
+          'var(--inactive-icon'
+        }}
+      />
+    </button>
+  </div>
+</nav>
