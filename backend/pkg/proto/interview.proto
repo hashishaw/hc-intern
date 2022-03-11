@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/api/annotations.proto";
+
+option go_package = "gen/proto";
+
+service InterviewService {
+  rpc Get(GetRequest) returns (Interview) {
+    option (google.api.http) = {
+      get: "/api/interview/{interview_id}"
+    };
+  }
+
+  rpc Schedule(ScheduleRequest) returns (ScheduleResponse) {
+    option (google.api.http) = {
+      post: "/api/interview/schedule/{candidate_id}"
+      body: "*"
+    };
+  }
+}
+
+message GetRequest {
+  string interview_id = 1;
+};
+
+message Interview {
+  bool exists = 1;
+  string candidate_name = 2;
+};
+
+message ScheduleRequest {
+  uint64 candidate_id = 1;
+};
+
+message ScheduleResponse {
+  string interview_id = 1;
+}
