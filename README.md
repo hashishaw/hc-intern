@@ -4,4 +4,4 @@
 
 1. Build the frontend `cd ui && npm run build`
 
-2. Run the backend `cd backend && go run .`
+2. Run the backend `go run .`

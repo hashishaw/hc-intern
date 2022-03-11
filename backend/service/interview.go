@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	pb "github.com/hashishaw/hc-intern/backend/gen"
+	pb "github.com/hashishaw/hc-intern/backend/backend/gen"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

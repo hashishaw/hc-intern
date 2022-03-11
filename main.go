@@ -3,8 +3,8 @@ package main
 import (
   "context"
   "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-  pb "github.com/hashishaw/hc-intern/backend/gen"
-  "github.com/hashishaw/hc-intern/backend/service"
+  pb "github.com/hashishaw/hc-intern/backend/backend/gen"
+  "github.com/hashishaw/hc-intern/backend/backend/service"
   "google.golang.org/grpc"
   "google.golang.org/grpc/credentials/insecure"
   "log"
@@ -46,16 +46,18 @@ func main() {
     log.Fatalln("Failed to dial server:", err)
   }
 
-  mux := runtime.NewServeMux()
+  mux := http.NewServeMux()
+  gwmux := runtime.NewServeMux()
   // Register service handler
-  err = pb.RegisterInterviewServiceHandler(context.Background(), mux, conn)
+  err = pb.RegisterInterviewServiceHandler(context.Background(), gwmux, conn)
   if err != nil {
     log.Fatalln("Failed to register gateway:", err)
   }
 
   // Handle custom paths
-  err = mux.HandlePath("GET", "/dist", StaticHandler())
-  err = mux.HandlePath("GET", "/{entrypoint}", IndexHandler())
+  mux.Handle("/api/", gwmux)
+  mux.Handle("/dist/", http.StripPrefix("/dist/", http.FileServer(http.Dir("."))))
+  mux.HandleFunc("/", IndexHandler("./index.html"))
 
   gwServer := &http.Server{
     Addr:    ":8090",
@@ -66,19 +68,10 @@ func main() {
   log.Fatalln(gwServer.ListenAndServe())
 }
 
-// StaticHandler serves static assets. Change "." to directory to serve from.
-func StaticHandler() func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-  fn := func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-    http.FileServer(http.Dir("."))
-  }
-
-  return fn
-}
-
 // IndexHandler serves application's entrypoint, eg. index.html
-func IndexHandler() func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-  fn := func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-    http.ServeFile(w, r, pathParams["entrypoint"])
+func IndexHandler(entrypoint string) func(w http.ResponseWriter, r *http.Request) {
+  fn := func(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, entrypoint)
   }
 
   return fn
